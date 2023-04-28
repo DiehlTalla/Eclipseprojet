@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="375.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contacts.view.compte.ViewCompteCombo">
+   <children>
+      <Label alignment="CENTER" styleClass="titre-vue" text="Comptes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <VBox alignment="CENTER" fillWidth="false" layoutY="88.0" prefHeight="258.0" prefWidth="394.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="88.0">
+         <children>
+            <Pane prefHeight="259.0" prefWidth="394.0">
+               <children>
+                  <ListView fx:id="lsvComptes" layoutX="18.0" layoutY="6.0" prefHeight="198.0" prefWidth="128.0" />
+                  <HBox alignment="CENTER" layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="134.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnAjouter" mnemonicParsing="false" onAction="#doAjouter" prefHeight="25.0" prefWidth="60.0" text="Ajouter" />
+                        <Button fx:id="btnSupprimer" cancelButton="true" mnemonicParsing="false" onAction="#doSupprimer" prefHeight="25.0" prefWidth="62.0" text="Suppr" />
+                     </children>
+                  </HBox>
+                  <GridPane fx:id="paneForm" layoutX="167.0" prefHeight="204.0" prefWidth="229.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="83.0" />
+                      <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="146.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Id :" />
+                        <Label fx:id="labId" text="Label" GridPane.columnIndex="1" />
+                        <Label text="Pseudo :" GridPane.rowIndex="1" />
+                        <TextField fx:id="txfPseudo" prefHeight="25.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Mot de passe :" GridPane.rowIndex="2" />
+                        <TextField fx:id="txfMotDePasse" prefHeight="25.0" prefWidth="117.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="e-mail :" GridPane.rowIndex="3" />
+                        <TextField fx:id="txfEmail" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <VBox GridPane.rowIndex="4">
+                           <children>
+                              <Label text="Rôles :" />
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin>
+                        </VBox>
+                        <ListView fx:id="lsvRoles" prefHeight="51.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin>
+                        </ListView>
+                     </children>
+                  </GridPane>
+                  <HBox alignment="CENTER" layoutX="218.0" layoutY="223.0" prefHeight="25.0" prefWidth="128.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="btnValider" defaultButton="true" mnemonicParsing="false" onAction="#doValider" prefHeight="25.0" prefWidth="60.0" text="Valider" />
+                        <Button cancelButton="true" mnemonicParsing="false" onAction="#doAnnuler" text="Annuler" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

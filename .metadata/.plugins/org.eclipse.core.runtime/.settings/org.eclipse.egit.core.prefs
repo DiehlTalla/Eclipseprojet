@@ -1,0 +1,5 @@
+GitRepositoriesView.GitDirectories=C\:\\Users\\talla\\Downloads\\Eclipseprojet\\exemple\\.git;C\:\\Users\\talla\\Downloads\\Eclipseprojet\\assogym\\.git;
+GitRepositoriesView.GitDirectories.relative=exemple\\.git;assogym\\.git;
+core_defaultRepositoryDir=${workspace_loc}
+core_ssh_default_agent=\\\\.\\pageant
+eclipse.preferences.version=1

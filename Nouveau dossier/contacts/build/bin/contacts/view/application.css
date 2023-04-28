@@ -1,0 +1,43 @@
+
+.titre-vue {
+    -fx-font-size: 20;
+    -fx-font-family: Arial;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e46e8;
+}
+
+
+.message-accueil {
+    -fx-background-color: cornsilk;
+    -fx-padding: 10;
+    -fx-border-color: gray; 
+    -fx-border-width: 1;
+    -fx-font-size: 16;
+}
+
+
+.validation-ok {
+	-fx-border-color: transparent ;
+    -fx-border-width: 1 ; 
+}
+
+.validation-error {
+	-fx-border-color: RED ;
+    -fx-border-width: 1 ; 
+    -fx-border-radius: 2px;
+}
+
+
+.tooltip {
+    -fx-background-radius: 2 2 2 2;
+    -fx-background-color: #ffffca;
+    -fx-font-size: 1em;
+    -fx-text-fill: BLACK;
+}
+
+.tooltip-error {
+    -fx-background-radius: 2 2 2 2;
+    -fx-background-color: #ffdddd;
+    -fx-font-size: 1em;
+    -fx-text-fill: Maroon;
+}

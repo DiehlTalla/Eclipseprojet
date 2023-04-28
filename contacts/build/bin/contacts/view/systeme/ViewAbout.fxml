@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="234.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contacts.view.systeme.ViewAbout">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="50.0" layoutY="14.0" prefHeight="219.0" prefWidth="293.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <Label fx:id="labTitre" styleClass="titre-vue" text="Titre">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <GridPane prefHeight="110.0" prefWidth="243.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="40.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="192.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="50.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Version :" />
+                  <Label fx:id="labVersion" text="Version" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Auteur :" GridPane.rowIndex="1" />
+                  <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="labAuteur" text="Auteur">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Hyperlink fx:id="hlkEmail" focusTraversable="false" onAction="#doSendEmail" text="e-mail" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Développé avec le framework " />
+                        <Label text="JFox" textFill="RED">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@JFox.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <rotationAxis>
+                              <Point3D y="5.0" z="1.0" />
+                           </rotationAxis>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </GridPane>
+            <Button mnemonicParsing="false" onAction="#doFermer" text="Fermer" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

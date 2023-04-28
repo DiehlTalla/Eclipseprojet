@@ -1,0 +1,7 @@
+#
+#Wed Mar 29 09:22:30 CEST 2023
+org.eclipse.jdt.apt.aptEnabled=true
+org.eclipse.jdt.apt.genTestSrcDir=.apt_generated_tests
+org.eclipse.jdt.apt.reconcileEnabled=true
+org.eclipse.jdt.apt.genSrcDir=build\\apt_generated
+eclipse.preferences.version=1

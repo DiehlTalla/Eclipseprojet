@@ -1,0 +1,11 @@
+
+# Service
+service.name	= postgresql-x64-14
+
+# Param�tres JDBC
+jdbc.driver		= org.postgresql.Driver
+jdbc.url		= jdbc:postgresql://localhost:5432/postgres?currentSchema=exemple
+
+# Compte utilisateur 
+jdbc.user		= postgres
+jdbc.password	= postgres

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="375.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="contacts.view.personne.ViewPersonneForm">
+   <children>
+      <Label alignment="CENTER" layoutX="130.0" layoutY="12.0" styleClass="titre-vue" text="Personne" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+      <HBox alignment="TOP_CENTER" layoutX="55.0" layoutY="64.0" prefHeight="121.0" prefWidth="309.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <GridPane prefHeight="149.0" prefWidth="200.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="63.0" />
+                <ColumnConstraints fillWidth="false" maxWidth="137.0" minWidth="10.0" prefWidth="137.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Id :" />
+                  <Label fx:id="labId" prefHeight="17.0" prefWidth="51.0" text="Label" GridPane.columnIndex="1" />
+                  <Label text="Nom :" GridPane.rowIndex="1" />
+                  <TextField fx:id="txfNom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Prénom :" GridPane.rowIndex="2" />
+                  <TextField fx:id="txfPrenom" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Catégorie :" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="cmbCategorie" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+               <opaqueInsets>
+                  <Insets right="20.0" />
+               </opaqueInsets>
+            </GridPane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="60.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" layoutY="189.0" prefHeight="121.0" prefWidth="309.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="185.0">
+         <padding>
+            <Insets bottom="10.0" left="20.0" top="10.0" />
+         </padding>
+         <children>
+            <TableView fx:id="tbvTelphones" editable="true" prefHeight="101.0" prefWidth="296.0">
+              <columns>
+                  <TableColumn fx:id="colId" editable="false" prefWidth="51.0" text="Id" />
+                <TableColumn fx:id="colLibelle" prefWidth="93.0" text="Libellé" />
+                <TableColumn fx:id="colNumero" prefWidth="115.0" text="Numéro" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#doTelephoneAjouter" text="Ajouter" />
+                        <MenuItem mnemonicParsing="false" onAction="#doiTelephoneSupprimer" text="Supprimer" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <VBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Label text="Téléphones">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#doTelephoneAjouter" prefWidth="51.0" text="Ajout" />
+                  <Button fx:id="btnTelephoneSupprimer" mnemonicParsing="false" onAction="#doiTelephoneSupprimer" text="Suppr." />
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="-6.0" layoutY="156.0" prefHeight="60.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnValider" defaultButton="true" mnemonicParsing="false" onAction="#doValider" text="Valider" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#doAnnuler" text="Annuler" />
+         </children>
+         <padding>
+            <Insets left="20.0" right="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

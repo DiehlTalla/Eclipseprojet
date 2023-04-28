@@ -1,0 +1,14 @@
+pluginManagement {
+  plugins {
+    id 'org.openjfx.javafxplugin'  version '0.0.13'
+	id 'com.diffplug.eclipse.apt' version '3.40.0'
+  }
+} 
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.4.0'
+}
+
+include ':~jfox'
+project(':~jfox').projectDir = new File(settingsDir, '../~jfox')
+

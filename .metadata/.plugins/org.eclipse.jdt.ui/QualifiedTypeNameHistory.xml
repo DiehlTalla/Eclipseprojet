@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+    <fullyQualifiedTypeName name="contacts.data.Memo"/>
+    <fullyQualifiedTypeName name="contacts.view.categorie.ModelCategorie"/>
+    <fullyQualifiedTypeName name="contacts.data.Categorie"/>
+    <fullyQualifiedTypeName name="jfox.javafx.util.UtilFX"/>
+    <fullyQualifiedTypeName name="contacts.dao.DaoMemo"/>
+    <fullyQualifiedTypeName name="contacts.data.Personne"/>
+    <fullyQualifiedTypeName name="contacts.dao.DaoPersonne"/>
+    <fullyQualifiedTypeName name="contacts.data.Service"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Label"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.TextField"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.ComboBox"/>
+    <fullyQualifiedTypeName name="javafx.event.ActionEvent"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Button"/>
+</qualifiedTypeNameHistroy>

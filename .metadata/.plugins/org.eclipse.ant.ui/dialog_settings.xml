@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="AntPropertiesFileSelectionDialog.showAll" value="false"/>
+	<item key="AntPropertiesFileSelectionDialog.lastContainer" value="/contacts/scripts-sql"/>
+	<section name="org.eclipse.ant.internal.ui.views.AntView">
+		<item key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;antView&gt;&#x0D;&#x0A;&lt;project error=&quot;false&quot; name=&quot;sql-contacts&quot; path=&quot;/contacts/scripts-sql/execute-sql.xml&quot;/&gt;&#x0D;&#x0A;&lt;project error=&quot;false&quot; name=&quot;sql-exemple&quot; path=&quot;/exemple/scripts-sql/execute-sql.xml&quot;/&gt;&#x0D;&#x0A;&lt;project error=&quot;false&quot; name=&quot;sql-assogym&quot; path=&quot;/assogym/scripts-sql/execute-sql.xml&quot;/&gt;&#x0D;&#x0A;&lt;filterInternalTargets value=&quot;false&quot;/&gt;&#x0D;&#x0A;&lt;/antView&gt;"/>
+	</section>
+</section>

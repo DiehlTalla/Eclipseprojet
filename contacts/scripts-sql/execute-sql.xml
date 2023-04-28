@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================================
+     01/2023
+
+     sql-contacts
+
+     E. Amblard
+     ====================================================================== -->
+<project name="sql-contacts" >
+	<description>
+	        Scripts de créaton de la base de données
+	</description>
+
+	
+    <!-- ================================= 
+          Paramètres généraux              
+         ================================= -->
+
+	<property file="../src/META-INF/jdbc.properties" />
+	
+	<property name="dir.sql" location="." />
+	<property name="dir.lib" location="../../~lib" />
+
+	<property name="exe.elevate" location="${dir.lib}/elevate/elevate.exe" />
+	
+	<property name="dir.driver" location="${dir.lib}/postgresql" />
+	
+	<path id="classpath.jdbc.driver" >
+		<fileset dir="${dir.driver}" />
+	</path>
+	
+	<mkdir dir="${dir.driver}"/>
+	<available classname="${jdbc.driver}" classpathref="classpath.jdbc.driver"  
+			property="flag.driver.ok" />
+	
+
+    <!-- ================================= 
+          target: 1-tables              
+         ================================= -->
+    <target name="1-tables" description="Crée talbes, séquences et vues">
+    	<execute-sql sqlfile="${dir.sql}/1-tables.sql"/>
+    </target>
+	
+
+    <!-- ================================= 
+          target: 2-procedures              
+         ================================= -->
+    <target name="2-procedures" description="Crée triggers et procédures stockées">
+    	<execute-sql sqlfile="${dir.sql}/2-procedures.sql" delimiter="/" />
+    </target>
+	
+
+    <!-- ================================= 
+          target: 3-data              
+         ================================= -->
+    <target name="3-data" description="Insère données initiales">
+    	<execute-sql sqlfile="${dir.sql}/3-data.sql"/>
+    </target>
+	
+
+    <!-- ================================= 
+          target: 9-tout              
+         ================================= -->
+    <target name="9-tout" description="Exécute les cibles 1,2 et 3">
+    	
+    	<antcall target="1-tables" />
+		<antcall target="2-procedures" />
+		<antcall target="3-data" />
+        
+    </target>
+	
+	
+	<!-- = = = = = = = = = = = = = = = = =
+          macrodef: execute-sql          
+         = = = = = = = = = = = = = = = = = -->
+    <macrodef name="execute-sql">
+        <attribute  name="sqlfile"  />
+        <attribute  name="delimiter" default=";"  />
+        <attribute  name="user" default="${jdbc.user}"  />
+        <attribute  name="password" default="${jdbc.password}"  />
+        <sequential>
+        	
+        	<local name="delimitertype" />
+        	<local name="strictDelimiterMatching" />
+        	<condition property="delimitertype" value="normal" else="row" >
+				<equals arg1="@{delimiter}" arg2=";"/>
+        	</condition>
+        	<condition property="strictDelimiterMatching" value="true" else="false" >
+				<equals arg1="@{delimiter}" arg2=";"/>
+        	</condition>
+        	
+        	<sql 
+        		src="@{sqlfile}"
+        		userid="@{user}" 
+        		url="${jdbc.url}" 
+        		password="@{password}" 
+        		driver="${jdbc.driver}" 
+        		delimiter="@{delimiter}"
+        		delimitertype="${delimitertype}"
+        		strictDelimiterMatching="${strictDelimiterMatching}"
+        		autocommit="true"
+        		encoding="UTF-8"
+        		onerror="continue"
+    			classpathref="classpath.jdbc.driver"
+        	/>
+            
+        </sequential>
+    </macrodef>
+	
+
+    <!-- ================================= 
+          target: start              
+         ================================= -->
+    <target name="start" description="Starts the service">
+    	<exec executable="${exe.elevate}">
+    		<arg value="NET"/>
+    		<arg value="START"/>
+    		<arg value="${service.name}" />	
+    	</exec>
+    </target>
+	
+
+    <!-- ================================= 
+          target: stop             
+         ================================= -->
+    <target name="stop" description="Stops the service">
+    	<exec executable="${exe.elevate}">
+    		<arg value="NET"/>
+    		<arg value="STOP"/>
+    		<arg value="${service.name}" />	
+    	</exec>
+    </target>
+	
+
+	<!-- = = = = = = = = = = = = = = = = =
+          target: config-start            
+         = = = = = = = = = = = = = = = = = -->
+    <target name="config-start" >
+    	<exec executable="${exe.elevate}">
+    		<arg value="SC"/>
+    		<arg value="CONFIG"/>
+    		<arg value="${service.name}" />	
+    		<arg value="START=DEMAND"/>
+    	</exec>
+    </target>
+
+</project>

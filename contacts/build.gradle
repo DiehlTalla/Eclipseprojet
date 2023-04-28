@@ -1,0 +1,132 @@
+//-------
+// Ressources extenres
+//-------
+
+plugins {
+    id 'application'
+    id 'eclipse'
+	id 'org.openjfx.javafxplugin'  
+	id 'com.diffplug.eclipse.apt'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+//-------
+// Dépendances
+//-------
+
+javafx {
+    version = "19.0.2.1"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
+}
+
+dependencies {
+	
+	implementation project(':~jfox')
+	implementation group: 'jakarta.annotation', name: 'jakarta.annotation-api', version: '2.1.1'
+	implementation group: 'jakarta.inject', name: 'jakarta.inject-api', version: '2.0.1'
+	
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.4'
+	implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.3.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+/* Jasper Reports	
+	implementation group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.20.0'
+	implementation group: 'net.sf.jasperreports', name: 'jasperreports-fonts', version: '6.20.0'
+	implementation group: 'net.sf.jasperreports', name: 'jasperreports-metadata', version: '6.20.0'
+	implementation group: 'net.sf.jasperreports', name: 'jasperreports-functions', version: '6.20.0'
+	implementation group: 'com.lowagie', name: 'itext', version: '2.1.7'
+	implementation group: 'com.google.zxing', name: 'core', version: '3.4.1'
+	implementation group: 'net.sf.barcode4j', name: 'barcode4j', version: '2.1'
+	implementation (group: 'org.apache.xmlgraphics', name: 'batik-bridge', version: '1.16') {
+		exclude group: 'xml-apis', module: 'xml-apis'
+	}
+*/	
+}
+
+configurations.implementation {
+	exclude group: 'bouncycastle', module: 'bcmail-jdk14'
+	exclude group: 'bouncycastle', module: 'bcprov-jdk14'
+}
+
+compileJava {
+    inputs.property("moduleName", "jasperreports" )
+    inputs.property("moduleName", "batik-bridge" )
+    doFirst {
+        options.compilerArgs = [
+            '--module-path', classpath.asPath,
+        ]
+        classpath = files()  
+    }
+}
+
+
+//-------
+// Java
+//-------
+
+// Version de Java
+java.toolchain.languageVersion = JavaLanguageVersion.of(11)
+
+// Encodage des fichiers
+compileJava.options.encoding = 'UTF-8'
+
+// Dossiers sources
+sourceSets {
+	main.java.srcDirs = ['src']
+	main.resources.srcDirs = ['src']
+}
+
+
+//-------
+// Eclipse
+//-------
+
+// Nature Gradle
+eclipse.project.natures 'org.eclipse.buildship.core.gradleprojectnature'
+
+// Dossier de sortie
+eclipse.classpath.defaultOutputDir = file('build/bin') 
+eclipse.classpath.file.whenMerged { 
+	entries.each { 
+		entry -> if (entry.kind == 'src' && entry.hasProperty('output')) {
+			entry.output = null
+		}
+	}
+}
+delete 'bin'
+
+// Utilisation des modules Java
+eclipse.classpath.file.whenMerged { 
+	entries.each { 
+		entry -> if (entry.kind == 'lib' || entry.kind == 'src' || entry.kind == 'con') {
+			entry.entryAttributes['module'] = 'true' 
+		}
+	}
+}
+
+// Dossier de sortie du processeur d'annotations
+mkdir( 'build/apt_generated' )
+eclipse.jdt.apt.genSrcDir='build/apt_generated'
+eclipse.classpath.file.whenMerged { cp ->
+	cp.entries.add( new org.gradle.plugins.ide.eclipse.model.SourceFolder('build/apt_generated', null) )
+}
+
+
+//-------
+// Tâches auxiliaires
+//-------
+
+// Copie les dépendances
+task copyDep() {
+	doLast {
+		delete("${buildDir}/dependencies")
+		copy {
+			from configurations.runtimeClasspath 
+			into 'build/dependencies'
+		}
+	}
+}

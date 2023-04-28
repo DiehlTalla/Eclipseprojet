@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     01/2023
+
+     run-gradle
+
+     E. Amblard
+     ====================================================================== -->
+<project name="run-gradle" default="eclipse">
+	<description>
+	        Run Gradle Tasks for Eclipse
+	</description>
+
+	
+    <!-- ================================= 
+          Paramètres généraux
+         ================================= -->
+
+	<property name="dir.gradle.data" location="C:/TEMP/gradle-data" />
+	<property name="flag.custom.dir.gradle.data" value="false"/>
+
+	<property name="path.dir.lib" location="../~lib"/>
+	
+	<path id="classpath.grdle.wrapper" path="${path.dir.lib}/gradle-wrapper/gradle-wrapper.jar" />
+	
+	<condition property="param.gradle.data" value='--gradle-user-home "${dir.gradle.data}"' else="" >
+		<istrue value="${flag.custom.dir.gradle.data}"/>
+	</condition>
+	
+
+	<!-- ================================= 
+	      target: eclipse              
+	     ================================= -->
+	<target name="eclipse" description="Configure Eclipse project">
+		<gradle task="cleanEclipse" />
+		<gradle task="eclipse" />
+	</target>
+	
+
+	<!-- ================================= 
+	      target: run.appli              
+	     ================================= -->
+	<target name="run.appli" description="Run the app">
+		<gradle task="run" />
+	</target>
+	
+	
+	<!-- ================================= 
+	      macrodef gradle              
+	     ================================= -->
+	<macrodef name="gradle">
+		<attribute name="task" />
+		<sequential>
+	    	<java fork="true" 
+	    		classname="org.gradle.wrapper.GradleWrapperMain" 
+	    		classpathref="classpath.grdle.wrapper"
+	    	>
+	    		<arg value="@{task}" />
+	    		<arg line="${param.gradle.data}"/>
+	    		<jvmarg value="-Xmx64m"/>
+	    		<jvmarg value="-Xms64m"/>
+	    	</java>
+		</sequential>
+	</macrodef>
+	
+
+</project>

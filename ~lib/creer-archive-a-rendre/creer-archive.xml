@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     03/2023
+
+     creer-archive
+
+     E. Amblard
+     ====================================================================== -->
+<project name="creer-archive" default="creer-archive" basedir="../..">
+	<description>
+	        Crée le fichier archive pour remise du travail sur Moodle.
+	</description>
+
+	
+    <!-- ================================= 
+          Paramètres généraux
+         ================================= -->
+
+	<property name="path.archive" location="Archive-Travail-Tutos.zip" />
+	
+	<fileset dir="." id="fs-source">
+	    <include name="contacts/**"/>
+	    <include name="lab*/**"/>
+		<exclude name="*/.gradle/**"/>
+		<exclude name="*/build/**"/>
+	</fileset>
+
+	<condition property="isWindows">
+		<os family="windows" />
+	</condition>	
+
+	
+	<!-- ================================= 
+	      target: creer-archive              
+	     ================================= -->
+	<target name="creer-archive" description="Crée le fichier archive">
+
+		<delete file="${path.archive}" />
+		
+		<zip destfile="${path.archive}" >
+			<fileset refid="fs-source" />
+		</zip>
+
+		<antcall target="open-explorer" />	
+		
+	</target>
+
+	
+	<!-- ================================= 
+	      target: open-explorer              
+	     ================================= -->
+	<target name="open-explorer" if="${isWindows}" description="Ouvre l'explorateur Windows">
+		
+		<exec executable="explorer.exe" >
+			<arg value="/n,${basedir}"/>
+		</exec>
+		
+	</target>
+	
+	
+	
+	
+	<!-- ================================= 
+	      macrodef gradle              
+	     ================================= -->
+	<macrodef name="gradle">
+		<attribute name="task" />
+		<sequential>
+	    	<java fork="true" 
+	    		classname="org.gradle.wrapper.GradleWrapperMain" 
+	    		classpathref="classpath.grdle.wrapper"
+	    	>
+	    		<arg value="@{task}" />
+	    		<arg line="${param.gradle.data}"/>
+	    		<jvmarg value="-Xmx64m"/>
+	    		<jvmarg value="-Xms64m"/>
+	    	</java>
+		</sequential>
+	</macrodef>
+	
+
+</project>

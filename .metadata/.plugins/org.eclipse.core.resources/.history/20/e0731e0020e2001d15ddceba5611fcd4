@@ -1,0 +1,5 @@
+package contacts.view.service;
+
+public class ViewServiceForm {
+
+}

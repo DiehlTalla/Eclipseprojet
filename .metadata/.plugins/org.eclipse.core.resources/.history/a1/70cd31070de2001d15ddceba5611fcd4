@@ -1,0 +1,102 @@
+package contacts.data;
+
+import java.util.Objects;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+public class Service {
+	private final ObjectProperty<Integer> id = new SimpleObjectProperty<>();
+	private final StringProperty nom = new SimpleStringProperty();
+	private final ObjectProperty<Integer> annee = new SimpleObjectProperty<>();
+	private final ObjectProperty<Boolean> flagsiege = new SimpleObjectProperty<>();
+	private final ObjectProperty<Personne> personne = new SimpleObjectProperty<>();
+	
+	public final ObjectProperty<Personne> personneProperty() {
+		return this.personne;
+	}
+	
+	
+
+	public final Personne  getCategorie() {
+		return this.personne.get();
+	}
+
+	public final void setPersonne(final Personne personne) {
+		this.personneProperty().set(personne);
+	}
+	
+	
+	public final ObjectProperty<Integer> idProperty() {
+		return this.id;
+	}
+
+	public final Integer getId() {
+		return this.idProperty().get();
+	}
+
+	public final void setId(final Integer id) {
+		this.idProperty().set(id);
+	}
+	public final StringProperty nomProperty() {
+		return this.nom;
+	}
+
+	public final String getNom() {
+		return this.nomProperty().get();
+	}
+
+public final void setNom(final String nom) {
+	this.nomProperty().set(nom);
+	}
+	
+public final ObjectProperty<Integer> anneeProperty() {
+	return this.annee;
+}
+
+public final Integer getAnne() {
+	return this.anneeProperty().get();
+}
+
+public final void setAnnee(final Integer annee) {
+	this.idProperty().set(annee);
+}
+
+	public final ObjectProperty<Boolean> flagsiegeProperty() {
+		return this.flagsiege;
+	}
+
+	public final Boolean getFlagsiege() {
+		return this.flagsiegeProperty().get();
+	}
+	public final void seFlagsiege(final Boolean flagsiege) {
+		this.flagsiegeProperty().set(flagsiege);
+		
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Service other = (Service) obj;
+		return Objects.equals(id, other.id);
+	}
+
+
+	
+}

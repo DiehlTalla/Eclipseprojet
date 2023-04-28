@@ -1,0 +1,30 @@
+package contacts.commun;
+
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+
+import contacts.data.Categorie;
+import contacts.data.Compte;
+import contacts.data.Memo;
+import contacts.data.Personne;
+
+
+@Mapper
+public interface IMapper {
+	
+	Compte update( @MappingTarget Compte target, Compte source  );
+	
+	Categorie update( @MappingTarget Categorie target, Categorie source );
+	@Mapping( target="categorie", expression="java( source.getCategorie() )" )
+	Personne update( @MappingTarget Personne target, Personne source );
+	
+	
+
+
+
+	
+	
+    
+}
+
